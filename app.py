@@ -650,8 +650,14 @@ def get_bot_response(user_message, chat_history_list, user_id, api_key):
 # --- Flask Routes ---
 
 @app.route('/')
+def serve_landing():
+    """Serve landing page"""
+    return send_from_directory(app.template_folder, 'landing.html')
+
+
+@app.route('/setup')
 def serve_index():
-    """Serve main page"""
+    """Serve setup page"""
     return send_from_directory(app.template_folder, 'index.html')
 
 
