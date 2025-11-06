@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatMimic AI - Chat</title>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="stylesheet" href="/static/css/chat.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="whatsapp-container">
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <div class="header-left">
+                <a href="/" class="back-button">
+                    <span class="material-icons">arrow_back</span>
+                </a>
+                <div class="profile-pic-container">
+                    <div class="profile-pic" id="profile-pic">
+                        <span class="material-icons profile-icon" id="default-icon">person</span>
+                    </div>
+                    <div class="online-indicator"></div>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-name" id="contact-name">Loading...</div>
+                    <div class="last-seen" id="last-seen">online</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-icon" title="Video call">
+                    <span class="material-icons">videocam</span>
+                </button>
+                <button class="header-icon" title="Voice call">
+                    <span class="material-icons">call</span>
+                </button>
+                <button class="header-icon" title="More options">
+                    <span class="material-icons">more_vert</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Messages Area -->
+        <div class="chat-messages" id="chat-messages">
+            <div class="date-divider">
+                <span id="date-label">Today</span>
+            </div>
+
+            <!-- Welcome message -->
+            <div class="system-message">
+                <p><span class="material-icons">lock</span> Messages are end-to-end encrypted.</p>
+            </div>
+        </div>
+
+        <!-- Typing Indicator -->
+        <div id="typing-indicator" class="typing-indicator" style="display: none;">
+            <div class="typing-bubble">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Footer -->
+        <div class="chat-footer">
+            <button class="footer-icon emoji-button" title="Emoji">
+                <span class="material-icons">sentiment_satisfied_alt</span>
+            </button>
+            <div class="input-container">
+                <input
+                    type="text"
+                    id="message-input"
+                    placeholder="Type a message"
+                    autocomplete="off"
+                >
+            </div>
+            <button class="footer-icon attachment-button" title="Attach" style="display: none;">
+                <span class="material-icons">attach_file</span>
+            </button>
+            <button class="footer-icon camera-button" title="Camera" style="display: none;">
+                <span class="material-icons">camera_alt</span>
+            </button>
+            <button id="send-button" class="send-button" title="Send">
+                <span class="material-icons">send</span>
+            </button>
+            <button id="voice-button" class="voice-button" title="Voice message">
+                <span class="material-icons">mic</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal" id="error-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header error">
+                <span class="material-icons">error_outline</span>
+                <h3>Error</h3>
+            </div>
+            <div class="modal-body">
+                <p id="error-message"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="close-error">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/chat.js"></script>
+</body>
+</html>

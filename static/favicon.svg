@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="#25D366" stroke="#128C7E" stroke-width="2"/>
+
+  <!-- Chat bubble -->
+  <path d="M 30 35 Q 30 25 40 25 L 70 25 Q 80 25 80 35 L 80 55 Q 80 65 70 65 L 45 65 L 35 75 L 35 65 Q 30 65 30 55 Z"
+        fill="white" stroke="none"/>
+
+  <!-- AI Sparkle/Stars -->
+  <circle cx="45" cy="40" r="2.5" fill="#128C7E"/>
+  <circle cx="55" cy="40" r="2.5" fill="#128C7E"/>
+  <path d="M 65 35 L 66 40 L 71 40 L 67 43 L 69 48 L 65 45 L 61 48 L 63 43 L 59 40 L 64 40 Z"
+        fill="#FFD700"/>
+
+  <!-- Smile curve -->
+  <path d="M 42 50 Q 50 56 58 50" stroke="#128C7E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg>

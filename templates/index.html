@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatMimic AI - Create Your Personal AI Clone</title>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="stylesheet" href="/static/css/setup.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="setup-container">
+        <div class="setup-header">
+            <div class="logo">
+                <span class="material-icons">chat_bubble</span>
+                <h1>ChatMimic AI</h1>
+            </div>
+            <p class="subtitle">Create your personalized AI clone from WhatsApp conversations</p>
+            <div class="privacy-badge">
+                <span class="material-icons">lock</span>
+                <p>100% Private • Data processed locally • No external storage</p>
+            </div>
+        </div>
+
+        <div class="setup-card">
+            <div class="progress-bar">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Upload Chat</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Configure</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Persona</div>
+                </div>
+            </div>
+
+            <form id="setup-form" enctype="multipart/form-data">
+                <!-- Step 1: File Upload -->
+                <div class="step-content active" data-step="1">
+                    <h2>Upload WhatsApp Chat (Optional)</h2>
+                    <p class="step-description">For best results, export your WhatsApp chat and upload the .txt file here</p>
+
+                    <div class="accuracy-boost-notice">
+                        <span class="material-icons">auto_awesome</span>
+                        <div>
+                            <h4>Why Upload Chat?</h4>
+                            <p>Uploading your actual WhatsApp conversation allows the AI to deeply analyze and learn:</p>
+                            <ul>
+                                <li><strong>How they talk:</strong> Exact texting style, sentence patterns, word choices</li>
+                                <li><strong>What they talk about:</strong> Common topics, interests, and conversation themes</li>
+                                <li><strong>Their personality:</strong> Emotional expressions, humor style, and unique quirks</li>
+                                <li><strong>Language patterns:</strong> Code-switching, slang, emojis they actually use</li>
+                            </ul>
+                            <p class="boost-highlight"><strong>Result:</strong> Much more accurate and authentic responses! Without chat upload, the bot will only use your manual persona description.</p>
+                        </div>
+                    </div>
+
+                    <div class="file-upload-area" id="file-upload-area">
+                        <span class="material-icons upload-icon">cloud_upload</span>
+                        <p class="upload-text">Drag and drop your WhatsApp chat file here</p>
+                        <p class="upload-subtext">or</p>
+                        <button type="button" class="browse-button" id="browse-button">Browse Files</button>
+                        <input type="file" id="chat-file" name="file" accept=".txt" hidden required>
+                        <p class="file-info">Only .txt files up to 10MB</p>
+                    </div>
+
+                    <div class="selected-file" id="selected-file" style="display: none;">
+                        <span class="material-icons">insert_drive_file</span>
+                        <div class="file-details">
+                            <p class="file-name" id="file-name"></p>
+                            <p class="file-size" id="file-size"></p>
+                        </div>
+                        <button type="button" class="remove-file" id="remove-file">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+
+                    <div class="privacy-notice">
+                        <span class="material-icons">shield</span>
+                        <div>
+                            <h4>Your Privacy is Protected</h4>
+                            <ul>
+                                <li><strong>Local Processing:</strong> Your chat is parsed directly on this server</li>
+                                <li><strong>No External Storage:</strong> Files are deleted immediately after processing</li>
+                                <li><strong>Secure API:</strong> Your Gemini API key is stored locally and encrypted</li>
+                                <li><strong>Private Data:</strong> Conversation pairs stay on your device only</li>
+                            </ul>
+                            <p class="trust-msg">We never upload, share, or store your conversations externally. Everything happens locally.</p>
+                        </div>
+                    </div>
+
+                    <div class="help-section">
+                        <p class="help-title"><span class="material-icons">help_outline</span> How to export WhatsApp chat?</p>
+                        <ol class="help-steps">
+                            <li>Open WhatsApp and go to the chat you want to export</li>
+                            <li>Tap the three dots (menu) → More → Export chat</li>
+                            <li>Choose "Without Media"</li>
+                            <li>Save the .txt file and upload it here</li>
+                        </ol>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" id="skip-upload">Skip Upload</button>
+                        <button type="button" class="btn btn-primary" id="next-step-1">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Configuration -->
+                <div class="step-content" data-step="2">
+                    <h2>Configure Names & Details</h2>
+                    <p class="step-description">Tell us about the people in this conversation</p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="user-name">Your Name</label>
+                            <input type="text" id="user-name" name="user_name" placeholder="e.g., GhanShyam" required>
+                            <p class="input-help">Your name as it appears in the chat</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user-gender">Your Gender</label>
+                            <select id="user-gender" name="user_gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bot-name">Their Name (Bot)</label>
+                            <input type="text" id="bot-name" name="bot_name" placeholder="e.g., Viraj" required>
+                            <p class="input-help">The person the bot will mimic</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bot-gender">Their Gender</label>
+                            <select id="bot-gender" name="bot_gender">
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="relation">Your Relationship</label>
+                        <input type="text" id="relation" name="relation" placeholder="e.g., best friend, girlfriend, sister, colleague" required>
+                        <p class="input-help">How are you related? (friend, partner, sibling, etc.)</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="language">Primary Language</label>
+                        <select id="language" name="language" required>
+                            <option value="Mixed (All)">Mixed - Marathi + Hindi + English</option>
+                            <option value="Marathi (Manglish)">Marathi</option>
+                            <option value="Hindi + English (Hinglish)">Hindi</option>
+                            <option value="English">English Only</option>
+                        </select>
+                        <p class="input-help">Which language(s) do you both use most frequently?</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profile-pic">Profile Photo (Optional)</label>
+                        <div class="photo-upload-container">
+                            <input type="file" id="profile-pic" name="profile_pic" accept="image/*" hidden>
+                            <button type="button" class="photo-upload-btn" id="photo-upload-btn">
+                                <span class="material-icons">add_a_photo</span>
+                                <span>Add Profile Picture</span>
+                            </button>
+                            <div class="photo-preview" id="photo-preview" style="display: none;">
+                                <img id="preview-img" src="" alt="Preview">
+                                <button type="button" class="remove-photo" id="remove-photo">
+                                    <span class="material-icons">close</span>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="input-help">Upload their photo to personalize the chat (JPG, PNG up to 5MB)</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="api-key">Gemini API Key</label>
+                        <div class="api-key-input-wrapper">
+                            <input type="password" id="api-key" name="api_key" placeholder="Enter your Google Gemini API key" required>
+                            <div class="api-key-status" id="api-key-status">
+                                <span class="status-icon" id="status-icon"></span>
+                                <span class="status-text" id="status-text"></span>
+                            </div>
+                        </div>
+                        <p class="input-help">Get your free API key from <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a></p>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" id="prev-step-2">Back</button>
+                        <button type="button" class="btn btn-primary" id="next-step-2">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Persona -->
+                <div class="step-content" data-step="3">
+                    <h2>Define Persona</h2>
+                    <p class="step-description">Describe their personality, style, and typical phrases</p>
+
+                    <div class="accuracy-notice">
+                        <span class="material-icons">tips_and_updates</span>
+                        <div>
+                            <h4>The More Detail, The Better!</h4>
+                            <p>The more accurately and comprehensively you describe the person's texting style, personality traits, common phrases, emojis, and tone, the more similar and realistic the AI responses will be. Include specific examples!</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="persona-description">Persona Description</label>
+                        <textarea id="persona-description" name="persona_description" rows="15" required placeholder="Example:
+
+You are a sweet, sarcastic, emotionally intelligent girl.
+
+You often switch between Marathi and Hindi/English, especially in emotional moments.
+
+Common phrases you use:
+- 'Khadyat jaa'
+- 'Dukkar🐷'
+- 'Arey baba'
+- 'Gap bass'
+
+Your favorite emojis: ❤️ 🤌🏻 🫶🏻 😂 ✨ 🐷
+
+You reply in short, natural sentences like in WhatsApp.
+
+Tone: Like a best friend - sometimes flirty, sometimes caring, sometimes brutally honest.
+
+When happy/playful: 'Redyaa! 😂 kay chalu aahe?'
+When caring: 'Important ahe re tu mzya sathi ❤️'
+When teasing: 'Tuch na? 😉'"></textarea>
+                        <p class="input-help">Be detailed! Include language patterns, emojis, phrases, tone, and example responses</p>
+                    </div>
+
+                    <div class="example-personas">
+                        <p class="example-title"><span class="material-icons">lightbulb</span> Example Persona Templates</p>
+                        <div class="persona-templates">
+                            <button type="button" class="template-btn" data-template="friend">Best Friend</button>
+                            <button type="button" class="template-btn" data-template="romantic">Romantic Partner</button>
+                            <button type="button" class="template-btn" data-template="professional">Professional</button>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" id="prev-step-3">Back</button>
+                        <button type="submit" class="btn btn-success" id="submit-button">
+                            <span class="material-icons">check_circle</span>
+                            Create ChatBot
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="loading-overlay" id="loading-overlay" style="display: none;">
+                <div class="loader"></div>
+                <p id="loading-text">Processing your chat...</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Your data is processed locally and securely. API key is stored only on your device.</p>
+        </div>
+    </div>
+
+    <script src="/static/js/setup.js"></script>
+</body>
+</html>
