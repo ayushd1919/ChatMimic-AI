@@ -513,11 +513,178 @@ body {
 }
 
 @media (max-width: 767px) {
+    /* Header adjustments */
+    .chat-header {
+        padding: 8px 12px;
+    }
+
+    .header-left {
+        gap: 8px;
+    }
+
     .header-right {
-        gap: 10px;
+        gap: 8px;
+    }
+
+    .header-icon {
+        padding: 4px;
+    }
+
+    .header-icon .material-icons {
+        font-size: 22px;
+    }
+
+    .contact-name {
+        font-size: 0.9em;
+    }
+
+    .last-seen {
+        font-size: 0.75em;
+    }
+
+    .profile-pic {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Messages adjustments */
+    .chat-messages {
+        padding: 12px 8px;
     }
 
     .message-bubble {
-        max-width: 80%;
+        max-width: 85%;
+        padding: 7px 10px;
+    }
+
+    .message-text {
+        font-size: 0.9em;
+    }
+
+    /* Footer adjustments - KEY FIX */
+    .chat-footer {
+        padding: 6px 8px;
+        gap: 6px;
+    }
+
+    .footer-icon {
+        padding: 6px;
+        flex-shrink: 0;
+    }
+
+    .footer-icon .material-icons {
+        font-size: 22px;
+    }
+
+    .input-container {
+        flex: 1;
+        min-width: 0; /* Allow flex item to shrink below content size */
+    }
+
+    .input-container input {
+        padding: 8px 12px;
+        font-size: 0.9em;
+        border-radius: 18px;
+    }
+
+    .send-button,
+    .voice-button {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+    }
+
+    .send-button .material-icons,
+    .voice-button .material-icons {
+        font-size: 18px;
+    }
+
+    /* Typing indicator */
+    .typing-indicator {
+        padding: 0 8px 8px 8px;
+    }
+
+    .typing-bubble {
+        padding: 10px 14px;
+        max-width: 85%;
+    }
+
+    /* Modal adjustments */
+    .modal-content {
+        width: 95%;
+        margin: 0 10px;
+    }
+
+    .modal-header {
+        padding: 16px;
+    }
+
+    .modal-body {
+        padding: 16px;
+    }
+
+    .modal-footer {
+        padding: 16px;
+    }
+}
+
+/* Extra small devices (landscape phones, less than 375px) */
+@media (max-width: 374px) {
+    .chat-footer {
+        padding: 5px 6px;
+        gap: 4px;
+    }
+
+    .footer-icon {
+        padding: 4px;
+    }
+
+    .footer-icon .material-icons {
+        font-size: 20px;
+    }
+
+    .input-container input {
+        padding: 7px 10px;
+        font-size: 0.85em;
+    }
+
+    .send-button,
+    .voice-button {
+        width: 36px;
+        height: 36px;
+    }
+
+    .send-button .material-icons,
+    .voice-button .material-icons {
+        font-size: 16px;
+    }
+
+    .message-bubble {
+        max-width: 90%;
+        font-size: 0.85em;
+    }
+
+    .header-left {
+        gap: 6px;
+    }
+
+    .header-right {
+        gap: 6px;
+    }
+
+    .contact-name {
+        font-size: 0.85em;
+    }
+}
+
+/* Safe area insets for notched devices (iPhone X+) */
+@supports (padding: max(0px)) {
+    .whatsapp-container {
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+    }
+
+    .chat-footer {
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
     }
 }
