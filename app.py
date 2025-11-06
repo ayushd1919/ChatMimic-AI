@@ -990,6 +990,18 @@ def get_config(user_id):
 
 
 if __name__ == '__main__':
-    print("Starting Personal ChatBot Server...")
-    print(f"Debug Mode: {'ON' if DEBUG_MODE else 'OFF'}")
-    app.run(host='0.0.0.0', port=5000, debug=DEBUG_MODE)
+    # Use PORT environment variable for production (Render sets this)
+    port = int(os.environ.get('PORT', 5000))
+
+    # Detect if running in production
+    is_production = os.environ.get('FLASK_ENV') == 'production'
+
+    if is_production:
+        print("Starting ChatMimic AI Server in PRODUCTION mode...")
+        print(f"Port: {port}")
+        # In production, gunicorn will handle this
+        app.run(host='0.0.0.0', port=port, debug=False)
+    else:
+        print("Starting Personal ChatBot Server in DEVELOPMENT mode...")
+        print(f"Debug Mode: {'ON' if DEBUG_MODE else 'OFF'}")
+        app.run(host='0.0.0.0', port=port, debug=DEBUG_MODE)

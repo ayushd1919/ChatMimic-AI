@@ -2,6 +2,15 @@
 
 Transform your WhatsApp conversations into an AI chatbot that perfectly mimics anyone's texting style! Upload your chat history and watch as the AI learns their personality, phrases, and communication patterns.
 
+## 🌐 Branches
+
+This repository has two branches for different use cases:
+
+- **`local`** - For local development and testing on your machine
+- **`deployment`** - Production-ready code optimized for cloud hosting on [Render](https://render.com)
+
+📘 **Want to deploy online?** Check out the [Deployment Guide](DEPLOYMENT.md) for step-by-step instructions!
+
 ## Features
 
 - **AI-Powered Chat Analysis**: Deep learning of conversation patterns, personality traits, and communication style from your actual chats
